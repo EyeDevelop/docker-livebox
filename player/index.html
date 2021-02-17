@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+
+    <title>Live Content: SRV_HOSTNAME</title>
+
+    <link href="https://vjs.zencdn.net/7.10.2/video-js.css" rel="stylesheet" />
+</head>
+
+<body>
+    <h2 id="current-watch"></h2>
+    <video id="live-content" class="video-js" controls preload="auto" width="640" height="480" data-setup="{}">
+        <source id="live-content-source" src="/hls/live.m3u8" type="application/vnd.apple.mpegurl" />
+        <p class="vjs-no-js">
+            To view this livestream please enable JavaScript and make sure you can play HTML5 video.
+        </p>
+    </video>
+
+    <script src="https://vjs.zencdn.net/7.10.2/video.min.js"></script>
+    <script>
+        let content = document.querySelector("#live-content-source");
+        let contentDescription = document.querySelector("#current-watch");
+        let videoLink = window.location.pathname.substr(1);
+
+        content.setAttribute("src", `/hls/${videoLink}.m3u8`);
+        contentDescription.innerText = `Currently watching ${videoLink}`;
+    </script>
+</body>
+</html>
