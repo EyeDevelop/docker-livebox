@@ -13,6 +13,7 @@ RUN cd "/tmp/nginx/nginx-$NGINX_VERSION" &&\
     make install
 
 COPY entrypoint.sh /
+COPY share_cam /usr/bin/
 COPY player/* /var/www/html/
 COPY nginx.conf /usr/local/nginx/conf/nginx.conf
 CMD ["/entrypoint.sh"]
