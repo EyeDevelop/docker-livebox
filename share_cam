@@ -1,0 +1,10 @@
+#!/bin/bash
+
+clean_exit() {
+    pkill -KILL -P $$
+}
+
+trap 'clean_exit' TERM INT
+
+ffmpeg -f video4linux2 -i "/dev/video$1" -c:v libx264 -an -f flv "rtmp://localhost:1935/webcam/$1" &
+wait
